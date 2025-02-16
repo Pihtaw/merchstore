@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=user
+      - DB_PASSWORD=password
+      - DB_NAME=merchstore
+    depends_on:
+      - db
+    networks:
+      - merch_network
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: merchstore
+    ports:
+      - "5432:5432"
+    networks:
+      - merch_network
+
+networks:
+  merch_network:
+    driver: bridge
