@@ -13,7 +13,7 @@ type Config struct {
 func LoadConfig() *Config {
 	return &Config{
 		Port:      getEnv("PORT", "8080"),
-		DBSource: getEnv("DB_SOURCE", "postgres://user:password@db:5432/merchstore?sslmode=disable"),
+		DBSource: getEnv("DB_SOURCE", "postgres://user:password@localhost:5432/merchstore?sslmode=disable"),
 		JWTSecret: getEnv("JWT_SECRET", "your-secret-key"),
 	}
 }
